@@ -1,0 +1,56 @@
+flowchart TD
+    A[Staff/Owner Login] --> B{Select Module}
+
+    B --> C[Turf Booking]
+    B --> D[Swimming]
+    B --> E[Food Sales]
+    B --> F[Other Items Sales]
+    B --> G[Dashboard / Billing]
+
+    %% Turf Module
+    C --> C1[Pick Date]
+    C1 --> C2[View Slots: Available / Booked / Held]
+    C2 --> C3{Slot Available?}
+    C3 -- Yes --> C4[Enter Customer Name, Phone, Tier, Advance]
+    C4 --> C5[Confirm Booking - Slot Locked]
+    C3 -- No --> C6[Choose Another Slot or Date]
+    C7[Owner: Manage Slots] --> C7a[Add / Edit / Delete Time Slot]
+    C7a --> C7b[Set Price per Tier 14/16/18]
+    C7b --> C2
+
+    %% Swimming Module
+    D --> D1[Enter Number of People + Hours]
+    D1 --> D2[Auto-Calculate Price]
+    D2 --> D3[Generate Token / Receipt]
+    D3 --> D4[Mark Paid / Unpaid]
+    D5[Owner: Set/Edit Per-Person-Per-Hour Price] --> D2
+
+    %% Food Module
+    E --> E1[Select Item from Product List]
+    E1 --> E2[Enter Quantity]
+    E2 --> E3[Auto-Calculate Total]
+    E3 --> E4[Add More Items?]
+    E4 -- Yes --> E1
+    E4 -- No --> E5[Generate Bill]
+    E6[Owner: Manage Products] --> E6a[Add / Edit / Remove Item + Price]
+    E6a --> E1
+
+    %% Other Items Module
+    F --> F1[Select Item from Product List]
+    F1 --> F2[Enter Quantity]
+    F2 --> F3[Auto-Calculate Total]
+    F3 --> F4[Add More Items?]
+    F4 -- Yes --> F1
+    F4 -- No --> F5[Generate Bill]
+    F6[Owner: Manage Products] --> F6a[Add / Edit / Remove Item + Price]
+    F6a --> F1
+
+    %% Dashboard
+    C5 --> G
+    D4 --> G
+    E5 --> G
+    F5 --> G
+    G --> G1[Daily Revenue by Category]
+    G --> G2[Monthly Revenue Summary]
+    G --> G3[Revenue Charts]
+    G --> G4[Printable / Shareable Bill]

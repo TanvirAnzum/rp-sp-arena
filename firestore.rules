@@ -1,0 +1,89 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helpers ──────────────────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isOwner() {
+      return isSignedIn() && userRole() == "owner";
+    }
+
+    function isStaff() {
+      return isSignedIn() && (userRole() == "staff" || userRole() == "owner");
+    }
+
+    // ── Users collection ─────────────────────────────────────────
+    // Only the owner can create/update user docs (e.g. onboarding staff).
+    // A user can read their own doc (so AuthContext can fetch role).
+    match /users/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isOwner());
+      allow create, update: if isOwner();
+      allow delete: if isOwner();
+    }
+
+    // ── Turf: slots (owner manages, staff reads) ─────────────────
+    match /turfSlots/{slotId} {
+      allow read: if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Turf: bookings (staff creates/updates, owner full access) ─
+    match /turfBookings/{bookingId} {
+      allow read: if isStaff();
+      allow create, update: if isStaff();
+      allow delete: if isOwner();
+    }
+
+    // ── Swimming: settings (price — owner only write) ─────────────
+    match /swimmingSettings/{docId} {
+      allow read: if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Swimming: tokens ─────────────────────────────────────────
+    match /swimmingTokens/{tokenId} {
+      allow read: if isStaff();
+      allow create, update: if isStaff();
+      allow delete: if isOwner();
+    }
+
+    // ── Food products (owner manages catalog) ────────────────────
+    match /foodProducts/{productId} {
+      allow read: if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Food sales (staff creates) ───────────────────────────────
+    match /foodSales/{saleId} {
+      allow read: if isStaff();
+      allow create: if isStaff();
+      allow update, delete: if isOwner();
+    }
+
+    // ── Other items products ─────────────────────────────────────
+    match /otherProducts/{productId} {
+      allow read: if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Other items sales ────────────────────────────────────────
+    match /otherSales/{saleId} {
+      allow read: if isStaff();
+      allow create: if isStaff();
+      allow update, delete: if isOwner();
+    }
+
+    // ── Deny everything else ─────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
