@@ -140,6 +140,7 @@ export default function LoginPage() {
             </form>
           )}
         </div>
+        <p className={styles.devCredit}>Developed by Tanvir Anzum</p>
       </div>
     </div>
   );

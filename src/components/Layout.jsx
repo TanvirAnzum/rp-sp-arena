@@ -111,6 +111,7 @@ export default function Layout() {
           <button className={styles.logoutBtn} onClick={handleLogout}>
             Sign Out
           </button>
+          <p className={styles.devCredit}>Dev by Tanvir Anzum</p>
         </div>
       </aside>
 

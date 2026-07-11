@@ -141,6 +141,14 @@
 }
 .logoutBtn:hover { background: #334155; color: #f1f5f9; }
 
+.devCredit {
+  font-size: 0.68rem;
+  color: #334155;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
 /* ── Main content ── */
 .main {
   flex: 1;
