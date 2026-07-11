@@ -1,0 +1,344 @@
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  transition: border-color 0.15s;
+}
+
+.card.paid   { border-left: 3px solid #22c55e; }
+.card.unpaid { border-left: 3px solid #f59e0b; }
+
+/* Top row */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tokenId {
+  color: #94a3b8;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.paidBtn {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  text-transform: uppercase;
+  transition: opacity 0.12s;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: #f59e0b;
+}
+
+.paidBtn.paidActive {
+  background: rgba(34,197,94,0.12);
+  border-color: rgba(34,197,94,0.3);
+  color: #22c55e;
+}
+.paidBtn:hover { opacity: 0.75; }
+
+/* Phone */
+.phoneRow {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+.phoneLabel { color: #475569; font-size: 0.78rem; }
+.phoneVal   { color: #94a3b8; font-size: 0.82rem; }
+
+/* Detail stats */
+.details {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.statLabel {
+  color: #64748b;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.statVal {
+  color: #f1f5f9;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.divider {
+  color: #334155;
+  font-size: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Bottom row */
+.bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-top: 1px solid #1e3a5f;
+  padding-top: 0.6rem;
+}
+
+.total {
+  color: #38bdf8;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.timesCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.time {
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.overtime {
+  color: #ef4444;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* Bill button + top-right group */
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.billBtn {
+  background: rgba(14,165,233,0.1);
+  border: 1px solid rgba(14,165,233,0.3);
+  border-radius: 5px;
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.5rem;
+  transition: background 0.12s;
+}
+.billBtn:hover { background: rgba(14,165,233,0.2); }
+
+/* End session button (legacy only) */
+.endBtn {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 5px;
+  color: #f87171;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.5rem;
+  transition: background 0.12s;
+}
+.endBtn:hover { background: rgba(239,68,68,0.2); }
+
+.voidBtn {
+  background: transparent;
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 6px;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.12s;
+}
+.voidBtn:hover { background: rgba(239,68,68,0.12); border-color: #ef4444; }
+
+/* Editable start time */
+.editTimeBtn {
+  background: none; border: none; color: #475569; cursor: pointer;
+  font-size: 0.7rem; margin-left: 0.3rem; opacity: 0.7; padding: 0;
+  vertical-align: middle;
+}
+.editTimeBtn:hover { color: #94a3b8; opacity: 1; }
+
+.editTimeRow {
+  align-items: center; display: flex; gap: 0.3rem;
+}
+.timeInput {
+  background: #0f172a; border: 1px solid #334155; border-radius: 5px;
+  color: #f1f5f9; font-size: 0.75rem; padding: 0.2rem 0.4rem; width: 80px;
+}
+.timeInput:focus { border-color: #0ea5e9; outline: none; }
+.saveTimeBtn {
+  background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 4px; color: #22c55e; cursor: pointer; font-size: 0.72rem;
+  font-weight: 700; padding: 0.15rem 0.35rem;
+}
+.cancelTimeBtn {
+  background: rgba(100,116,139,0.15); border: 1px solid #334155;
+  border-radius: 4px; color: #64748b; cursor: pointer; font-size: 0.72rem;
+  font-weight: 700; padding: 0.15rem 0.35rem;
+}
+
+/* Active / session-over borders */
+.active      { border-color: #0ea5e9 !important; }
+.sessionOver { border-color: #f59e0b !important; }
+
+/* Session state badges */
+.liveBadge {
+  display: inline-block;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-left: 0.4rem;
+  padding: 1px 6px;
+  vertical-align: middle;
+}
+
+.liveBadge.badgeActive {
+  background: #0ea5e9;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.liveBadge.badgeUpcoming {
+  background: #7c3aed;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* Prebooked: countdown timer */
+.liveTimer {
+  color: #0ea5e9;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 0.3rem 0 0.1rem;
+}
+
+/* Prebooked: starts-in display */
+.upcomingTimer {
+  color: #a78bfa;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 0.2rem 0 0.1rem;
+}
+
+/* Prebooked: session ended but not paid */
+.sessionOverWarning {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 6px;
+  color: #f87171;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.65rem;
+}
+
+/* Legacy: active session running > 3h */
+.longWarning {
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 6px;
+  color: #fbbf24;
+  font-size: 0.78rem;
+  padding: 0.4rem 0.65rem;
+}
+
+/* Legacy: pending total (session not yet ended) */
+.pendingTotal {
+  color: #475569;
+  font-size: 0.82rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* End session form (legacy only) */
+.endForm {
+  background: #0f172a;
+  border: 1px solid #0ea5e9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+}
+
+.endRow {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.endLabel {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  min-width: 70px;
+}
+
+.endPreview {
+  background: #1e293b;
+  border-radius: 6px;
+  color: #94a3b8;
+  display: flex;
+  font-size: 0.78rem;
+  gap: 0.75rem;
+  padding: 0.4rem 0.6rem;
+}
+
+.endPreviewTotal {
+  color: #38bdf8;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.endError { color: #f87171; font-size: 0.78rem; margin: 0; }
+
+.confirmEndBtn {
+  background: #0ea5e9;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  transition: background 0.12s;
+}
+.confirmEndBtn:hover:not(:disabled) { background: #0284c7; }
+.confirmEndBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.cancelBtn {
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.65rem;
+  transition: all 0.12s;
+}
+.cancelBtn:hover { background: #1e293b; color: #f1f5f9; }

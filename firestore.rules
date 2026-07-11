@@ -1,0 +1,126 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function userRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    function isOwner() { return isSignedIn() && userRole() == "owner"; }
+    function isStaff() { return isSignedIn() && (userRole() == "staff" || userRole() == "owner"); }
+
+    // Returns the set of fields that changed in this update.
+    // Staff updates must stay within the declared safe fields.
+    function changedFields() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    // ── Users ─────────────────────────────────────────────────────────────────
+    match /users/{uid} {
+      allow read:             if isSignedIn() && (request.auth.uid == uid || isOwner());
+      allow create, update:   if isOwner();
+      allow delete:           if isOwner();
+    }
+
+    // ── Turf slots (config) ───────────────────────────────────────────────────
+    match /turfSlots/{slotId} {
+      allow read:  if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Turf bookings ────────────────────────────────────────────────────────
+    // Staff may create freely.
+    // Staff updates are locked to operational fields only — price, date, slot,
+    // customer info, and bookedBy cannot be changed after creation.
+    match /turfBookings/{bookingId} {
+      allow read:   if isStaff();
+      allow create: if isStaff();
+      allow update: if isOwner() || (isStaff() && changedFields().hasOnly([
+        'status', 'cancelReason', 'notes',
+        'paid', 'paymentMethod', 'paymentTxId', 'paymentNote',
+        'advancePaid',
+        'discountType', 'discountValue', 'discountAmt',
+        'taxPercent', 'taxAmt', 'finalTotal'
+      ]));
+      allow delete: if isOwner();
+    }
+
+    // ── Swimming settings (pricing config) ───────────────────────────────────
+    match /swimmingSettings/{docId} {
+      allow read:  if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Swimming tokens ──────────────────────────────────────────────────────
+    // Staff may create freely.
+    // Staff updates locked to: session end fields, entry time correction,
+    // and payment/billing fields. People count and token number are immutable.
+    match /swimmingTokens/{tokenId} {
+      allow read:   if isStaff();
+      allow create: if isStaff();
+      allow update: if isOwner() || (isStaff() && changedFields().hasOnly([
+        'exitTime', 'hours', 'totalPrice',
+        'entryTime',
+        'paid', 'paymentMethod', 'paymentTxId', 'paymentNote',
+        'discountType', 'discountValue', 'discountAmt',
+        'taxPercent', 'taxAmt', 'finalTotal'
+      ]));
+      allow delete: if isOwner();
+    }
+
+    // ── Food products (catalog) ───────────────────────────────────────────────
+    match /foodProducts/{productId} {
+      allow read:  if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Food sales ────────────────────────────────────────────────────────────
+    // Staff may create.
+    // Staff updates locked to paid-toggle fields only — items and total
+    // cannot be changed after a sale is recorded.
+    match /foodSales/{saleId} {
+      allow read:   if isStaff();
+      allow create: if isStaff();
+      allow update: if isOwner() || (isStaff() && changedFields().hasOnly([
+        'paid', 'paymentMethod', 'paymentTxId', 'paymentNote'
+      ]));
+      allow delete: if isOwner();
+    }
+
+    // ── Other products (catalog) ──────────────────────────────────────────────
+    match /otherProducts/{productId} {
+      allow read:  if isStaff();
+      allow write: if isOwner();
+    }
+
+    // ── Other sales ───────────────────────────────────────────────────────────
+    match /otherSales/{saleId} {
+      allow read:   if isStaff();
+      allow create: if isStaff();
+      allow update: if isOwner() || (isStaff() && changedFields().hasOnly([
+        'paid', 'paymentMethod', 'paymentTxId', 'paymentNote'
+      ]));
+      allow delete: if isOwner();
+    }
+
+    // ── Daily token counters ──────────────────────────────────────────────────
+    match /dailyCounters/{dateId} {
+      allow read, write: if isStaff();
+    }
+
+    // ── Expenses ──────────────────────────────────────────────────────────────
+    // Staff can add expenses but cannot edit or delete them.
+    // Owner can update (fix typos) and delete.
+    match /expenses/{expenseId} {
+      allow read, create: if isStaff();
+      allow update:       if isOwner();
+      allow delete:       if isOwner();
+    }
+
+    // ── Deny everything else ──────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

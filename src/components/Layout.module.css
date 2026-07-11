@@ -1,0 +1,299 @@
+/* App shell layout */
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* ── Mobile topbar (hidden on desktop) ── */
+.topbar       { display: none; }
+.hamburger    { display: none; }
+.topbarBrand  { display: none; }
+.backdrop     { display: none; }
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #1e293b;
+  border-right: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem 1.25rem;
+  border-bottom: 1px solid #334155;
+  margin-bottom: 1rem;
+}
+
+.brandLogo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.brandName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.brandSub {
+  font-size: 0.7rem;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ── Nav ── */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  padding: 0 0.75rem;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 0.75rem;
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+}
+.link:hover  { background: #0f172a; color: #f1f5f9; }
+.link.active { background: #0ea5e9; color: #fff; }
+
+/* ── Bottom section ── */
+.bottom {
+  padding: 1rem 1.25rem 0;
+  border-top: 1px solid #334155;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.roleTag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.email {
+  font-size: 0.78rem;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.82rem;
+  padding: 0.45rem;
+  text-align: center;
+  transition: background 0.12s, color 0.12s;
+  width: 100%;
+}
+.logoutBtn:hover { background: #334155; color: #f1f5f9; }
+
+/* ── Main content ── */
+.main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+/* Global loading state */
+:global(.screen-loading) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* Owner nav divider */
+.navDivider {
+  border: none;
+  border-top: 1px solid #334155;
+  margin: 0.4rem 0;
+}
+
+/* ════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+════════════════════════════════════ */
+
+/* ── Tablet (768–1024px): tighter padding ── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sidebar { width: 200px; }
+  .main    { padding: 1.5rem; }
+}
+
+/* ── Mobile (<768px): slide-in sidebar + fixed topbar ── */
+@media (max-width: 767px) {
+  /* Show topbar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+    height: 56px;
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 400;
+    flex-shrink: 0;
+  }
+
+  .topbarBrand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .topbarLogo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .topbarName {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #38bdf8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Hamburger button */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #94a3b8;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .hamburger:hover span { background: #f1f5f9; }
+
+  /* Sidebar becomes slide-in overlay */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 500;
+    width: 240px;
+    transform: translateX(-100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+  }
+  .sidebar.menuOpen { transform: translateX(0); }
+
+  /* Dimming backdrop */
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 499;
+    pointer-events: none;
+    transition: background 0.25s;
+  }
+  .backdrop.menuOpen {
+    background: rgba(0,0,0,0.55);
+    pointer-events: all;
+  }
+
+  /* Main content: account for fixed topbar */
+  .main {
+    padding: 1rem;
+    padding-top: calc(56px + 1rem);
+  }
+}
+
+/* ── Offline banner offset ── */
+/* When .offline class is on .shell, push the fixed topbar down */
+@media (max-width: 767px) {
+  .offline .topbar {
+    top: 2.2rem; /* height of the offline banner */
+  }
+  .offline .main {
+    padding-top: calc(3.5rem + 2.2rem); /* original topbar offset + banner */
+  }
+  .offline .sidebar {
+    top: calc(3.5rem + 2.2rem);
+    height: calc(100dvh - 3.5rem - 2.2rem);
+  }
+  .offline .backdrop {
+    top: calc(3.5rem + 2.2rem);
+  }
+}

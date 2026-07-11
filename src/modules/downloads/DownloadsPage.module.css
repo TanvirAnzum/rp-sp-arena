@@ -1,0 +1,262 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  margin-bottom: 1.75rem;
+}
+
+.title {
+  color: #f1f5f9;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ── Card grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.dashCard {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px rgba(14,165,233,0.15);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.cardIcon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.cardTitle {
+  color: #f1f5f9;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cardFile {
+  color: #475569;
+  font-size: 0.75rem;
+  font-family: monospace;
+  margin-top: 0.2rem;
+}
+
+.cardDesc {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Download button ── */
+.dlBtn {
+  background: #0ea5e9;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  transition: background 0.15s, box-shadow 0.15s;
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
+
+.dlBtn:hover:not(:disabled) {
+  background: #38bdf8;
+  box-shadow: 0 4px 12px rgba(14,165,233,0.25);
+}
+
+.dlBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  font-size: 0.88rem;
+}
+
+/* ── Dashboard date range ── */
+.rangeRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.presetBtn {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.45rem 0.85rem;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.presetBtn:hover {
+  border-color: #0ea5e9;
+  color: #38bdf8;
+}
+
+.presetActive {
+  background: rgba(14,165,233,0.12);
+  border-color: #0ea5e9;
+  color: #38bdf8;
+}
+
+.customRange {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.customRange label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.dateInput {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f1f5f9;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.6rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.dateInput:focus {
+  border-color: #38bdf8;
+}
+
+.rangeSep {
+  color: #475569;
+  font-size: 1rem;
+  padding-top: 1.3rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rangeRow {
+    flex-direction: column;
+  }
+
+  .presetBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .customRange {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .customRange label {
+    width: 100%;
+  }
+
+  .rangeSep {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Quota warning note ── */
+.quotaNote {
+  display: flex;
+  gap: 0.85rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 10px;
+  padding: 0.95rem 1.15rem;
+  margin-bottom: 0.25rem;
+  align-items: flex-start;
+}
+.quotaIcon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.quotaText {
+  color: #94a3b8;
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+.quotaText strong {
+  color: #fbbf24;
+}
+
+/* ── Shared filter card ── */
+.filterCard {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+.filterLabel {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ── Filter hint in cards ── */
+.filterHint {
+  color: #475569;
+  font-size: 0.78rem;
+  margin: 0;
+}
+.filterHint strong {
+  color: #64748b;
+}

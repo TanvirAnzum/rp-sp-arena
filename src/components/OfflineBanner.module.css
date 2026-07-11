@@ -1,0 +1,22 @@
+.banner {
+  align-items: center;
+  background: #7c2d12;
+  border-bottom: 2px solid #c2410c;
+  color: #fef3c7;
+  display: flex;
+  font-size: 0.85rem;
+  font-weight: 600;
+  gap: 0.6rem;
+  left: 0;
+  padding: 0.55rem 1.25rem;
+  position: fixed;
+  right: 0;
+  /* Sit on top of everything — sidebar z-index is 500, topbar is 400 */
+  top: 0;
+  z-index: 9999;
+}
+
+.icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}

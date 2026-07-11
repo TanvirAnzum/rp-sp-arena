@@ -1,0 +1,150 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+}
+
+.pageTitle {
+  color: #f1f5f9;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.dateLabel {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin: -1rem 0 0;
+}
+
+/* Summary cards row */
+.summaryRow {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.summaryCard {
+  border-radius: 12px;
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+
+.cardIdle   { background: #1e293b; }
+.cardActive { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.35); }
+.cardBooked { background: rgba(14,165,233,0.08); border-color: rgba(14,165,233,0.35); }
+
+.cardIcon  { font-size: 1.6rem; }
+.cardCount { color: #f1f5f9; font-size: 2.2rem; font-weight: 800; line-height: 1.1; }
+.cardLabel { color: #94a3b8; font-size: 0.82rem; }
+
+/* Sections */
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.sectionTitle {
+  align-items: center;
+  color: #e2e8f0;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 700;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.liveDot {
+  color: #22c55e;
+  font-size: 0.65rem;
+}
+
+.emptyNote {
+  color: #475569;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* Active session cards */
+.sessionGrid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.sessionCard {
+  background: #1e293b;
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.85rem 1rem;
+}
+
+.sessionHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tokenNum {
+  color: #22c55e;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.sessionDuration {
+  background: rgba(34,197,94,0.12);
+  border-radius: 99px;
+  color: #22c55e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+}
+
+.sessionDetails {
+  color: #94a3b8;
+  display: flex;
+  font-size: 0.82rem;
+  gap: 0.75rem;
+}
+
+/* Turf list */
+.turfList {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.turfRow {
+  align-items: center;
+  border-bottom: 1px solid #1e293b;
+  color: #94a3b8;
+  display: grid;
+  font-size: 0.85rem;
+  gap: 0.75rem;
+  grid-template-columns: 150px 1fr 130px 90px;
+  padding: 0.65rem 1rem;
+}
+
+.turfRow:last-child { border-bottom: none; }
+
+.turfSlot     { color: #38bdf8; font-weight: 600; }
+.turfCustomer { color: #e2e8f0; }
+.turfPhone    { color: #64748b; }
+.turfTier     { color: #94a3b8; text-align: right; }
+
+@media (max-width: 767px) {
+  .turfRow {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.2rem;
+  }
+  .turfPhone { display: none; }
+  .turfTier  { text-align: left; }
+}

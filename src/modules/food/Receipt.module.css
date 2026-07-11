@@ -1,0 +1,201 @@
+/* ── Controls (screen only) ── */
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.printBtn {
+  background: #0ea5e9;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.printBtn:hover { background: #38bdf8; }
+
+.paidBtn {
+  background: #22c55e;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.paidBtn:hover:not(:disabled) { background: #16a34a; }
+
+.unpaidBtn {
+  background: #f59e0b;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.unpaidBtn:hover:not(:disabled) { background: #d97706; }
+
+.paidBtn:disabled,
+.unpaidBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.88rem;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.closeBtn:hover { background: #334155; color: #f1f5f9; }
+
+/* ── Receipt paper (screen display) ── */
+.receipt {
+  background: #fff;
+  border-radius: 6px;
+  color: #111;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 1.25rem 1rem;
+}
+
+.header { text-align: center; margin-bottom: 0.6rem; }
+.arenaName    { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.04em; }
+.arenaTagline { font-size: 0.72rem; color: #555; margin-top: 0.1rem; }
+.dateTime     { font-size: 0.72rem; color: #555; margin-top: 0.4rem; }
+
+.tokenBadge {
+  display: inline-block;
+  background: #1e293b;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.stampPaid {
+  display: inline-block;
+  margin-top: 0.45rem;
+  border: 2px solid #16a34a;
+  border-radius: 4px;
+  color: #16a34a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.5rem;
+}
+.stampUnpaid {
+  display: inline-block;
+  margin-top: 0.45rem;
+  border: 2px solid #dc2626;
+  border-radius: 4px;
+  color: #dc2626;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.5rem;
+}
+
+.dashed   { border: none; border-top: 1px dashed #aaa; margin: 0.65rem 0; }
+.thinLine { border: none; border-top: 1px solid #ddd; margin: 0.4rem 0; }
+
+.itemsSection { display: flex; flex-direction: column; gap: 0.15rem; }
+.itemRow {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr 1fr;
+  gap: 0.2rem;
+}
+.itemHeader { color: #555; font-size: 0.72rem; text-transform: uppercase; }
+.colItem  { overflow-wrap: break-word; word-break: break-word; min-width: 0; }
+.colQty   { text-align: center; }
+.colPrice { text-align: right; }
+.colSub   { text-align: right; font-weight: 600; }
+
+.totalsSection { display: flex; flex-direction: column; gap: 0.25rem; }
+.totalRow      { display: flex; justify-content: space-between; font-size: 0.82rem; }
+.discountRow   { color: #16a34a; }
+.grandTotal    { font-size: 1rem; font-weight: 700; letter-spacing: 0.03em; }
+
+.footer { text-align: center; color: #555; font-size: 0.72rem; margin-top: 0.25rem; }
+.footer p { margin: 0.1rem 0; }
+
+/* ── Payment picker section ── */
+.payPickerSection {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.confirmPayBtn {
+  background: #16a34a;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  width: 100%;
+  transition: background 0.15s;
+}
+.confirmPayBtn:hover:not(:disabled) { background: #22c55e; }
+.confirmPayBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.cancelBtn {
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  transition: all 0.12s;
+}
+.cancelBtn:hover { border-color: #64748b; color: #f1f5f9; }
+
+/* Payment row on receipt paper */
+.paymentRow {
+  color: #94a3b8 !important;
+  font-size: 0.82rem !important;
+}
+.paymentRow span:last-child {
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+}
+
+.servedBy {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  margin-top: 2px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}

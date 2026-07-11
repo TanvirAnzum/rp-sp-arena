@@ -1,0 +1,221 @@
+.container { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* Date nav */
+.datePicker {
+  align-items: center;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  width: fit-content;
+}
+.navBtn {
+  background: #0f172a; border: 1px solid #334155; border-radius: 6px;
+  color: #94a3b8; cursor: pointer; font-size: 1.2rem; line-height: 1;
+  padding: 0.35rem 0.6rem; transition: background 0.12s, color 0.12s;
+}
+.navBtn:hover { background: #334155; color: #f1f5f9; }
+.dateDisplay { display: flex; align-items: center; gap: 0.5rem; }
+.dateLabel { color: #f1f5f9; font-size: 0.95rem; font-weight: 600; min-width: 170px; }
+.dateInput {
+  background: #0f172a; border: 1px solid #334155; border-radius: 6px;
+  color: #94a3b8; cursor: pointer; font-size: 0.8rem; outline: none;
+  padding: 0.25rem 0.4rem;
+}
+.dateInput:focus { border-color: #38bdf8; }
+
+/* Summary */
+.summary {
+  background: #1e293b; border: 1px solid #334155; border-radius: 8px;
+  color: #94a3b8; display: flex; flex-wrap: wrap; font-size: 0.88rem;
+  gap: 1rem; padding: 0.65rem 1rem;
+}
+.summary strong { color: #f1f5f9; }
+.paidStat strong   { color: #22c55e; }
+.unpaidStat strong { color: #f59e0b; }
+
+/* Sale list */
+.list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.saleCard {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-left: 3px solid #334155;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.cardPaid   { border-left-color: #22c55e; }
+.cardUnpaid { border-left-color: #f59e0b; }
+
+/* Sale header */
+.saleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.saleMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tokenTag {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  color: #38bdf8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.4rem;
+}
+.saleTime { color: #64748b; font-size: 0.82rem; }
+
+.saleRight {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.saleTotal { color: #38bdf8; font-size: 1rem; font-weight: 700; }
+
+/* Paid / Unpaid badges */
+.badgePaid {
+  background: rgba(34,197,94,0.12);
+  border: 1px solid #22c55e;
+  border-radius: 4px;
+  color: #22c55e;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.4rem;
+}
+.badgeUnpaid {
+  background: rgba(245,158,11,0.12);
+  border: 1px solid #f59e0b;
+  border-radius: 4px;
+  color: #f59e0b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.4rem;
+}
+
+/* Items */
+.itemList { display: flex; flex-direction: column; gap: 0.3rem; }
+.itemRow  { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+.itemName { color: #f1f5f9; flex: 1; }
+.itemQty  { color: #64748b; flex-shrink: 0; }
+.itemSub  { color: #94a3b8; flex-shrink: 0; min-width: 70px; text-align: right; }
+
+/* Discount / Tax line */
+.adjustLine {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  border-top: 1px solid #334155;
+  padding-top: 0.35rem;
+}
+.discountNote { color: #22c55e; }
+.taxNote      { color: #f59e0b; }
+
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.1rem;
+}
+
+.btnBill {
+  background: rgba(14,165,233,0.1);
+  border: 1px solid rgba(14,165,233,0.3);
+  border-radius: 6px;
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  transition: background 0.12s;
+  white-space: nowrap;
+}
+.btnBill:hover { background: rgba(14,165,233,0.2); }
+
+.btnPaid {
+  background: #22c55e;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  transition: background 0.12s;
+}
+.btnPaid:hover:not(:disabled) { background: #16a34a; }
+
+.btnUnpaid {
+  background: #f59e0b;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  transition: background 0.12s;
+}
+.btnUnpaid:hover:not(:disabled) { background: #d97706; }
+
+.btnDelete {
+  background: transparent;
+  border: 1px solid #ef4444;
+  border-radius: 6px;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  transition: background 0.12s, color 0.12s;
+  margin-left: auto;
+}
+.btnDelete:hover:not(:disabled) { background: #ef4444; color: #fff; }
+.btnPaid:disabled,
+.btnUnpaid:disabled,
+.btnDelete:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.empty { color: #64748b; font-size: 0.9rem; margin: 0; padding: 2rem 0; }
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .datePicker {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .dateLabel { min-width: unset; flex: 1; font-size: 0.88rem; }
+  .summary   { font-size: 0.82rem; }
+  .saleTotal { font-size: 0.9rem; }
+}
+
+/* Today quick-jump button */
+.todayBtn {
+  background: rgba(14,165,233,0.1);
+  border: 1px solid rgba(14,165,233,0.3);
+  border-radius: 6px;
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.7rem;
+  transition: background 0.12s;
+  white-space: nowrap;
+}
+.todayBtn:hover { background: rgba(14,165,233,0.2); }

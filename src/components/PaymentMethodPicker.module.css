@@ -1,0 +1,105 @@
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.compact {
+  gap: 0.6rem;
+}
+
+.pickerLabel {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Method buttons ── */
+.methods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.45rem;
+}
+
+.methodBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.55rem 0.3rem;
+  transition: all 0.12s;
+  font-size: 0.82rem;
+}
+
+.methodBtn:hover {
+  border-color: #0ea5e9;
+  color: #94a3b8;
+}
+
+.active {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: #0ea5e9;
+  color: #38bdf8;
+}
+
+.methodIcon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.methodLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ── TxID / Note fields ── */
+.extraFields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.extraField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.extraLabel {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.notOnBill {
+  color: #475569;
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.extraInput {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f1f5f9;
+  font-size: 0.83rem;
+  padding: 0.45rem 0.65rem;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.extraInput:focus {
+  border-color: #38bdf8;
+}
+
+.extraInput::placeholder {
+  color: #334155;
+}

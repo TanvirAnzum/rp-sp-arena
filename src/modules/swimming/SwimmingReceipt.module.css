@@ -1,0 +1,296 @@
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.printBtn {
+  background: #0ea5e9;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+  min-width: 120px;
+}
+.printBtn:hover { background: #38bdf8; }
+
+.paidBtn {
+  background: #22c55e;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.paidBtn:hover { background: #16a34a; }
+
+.unpaidBtn {
+  background: #f59e0b;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.unpaidBtn:hover { background: #d97706; }
+
+.saveBtn {
+  background: #334155;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  color: #f1f5f9;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.saveBtn:hover:not(:disabled) { background: #475569; }
+.saveBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.88rem;
+  padding: 0.6rem 0.8rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.closeBtn:hover { background: #334155; color: #f1f5f9; }
+
+/* ── Receipt paper ── */
+.receipt {
+  background: #fff;
+  border-radius: 6px;
+  color: #111;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 1.25rem 1rem;
+}
+
+.header      { text-align: center; margin-bottom: 0.6rem; }
+.arenaName   { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.04em; }
+.arenaTagline{ font-size: 0.72rem; color: #555; margin-top: 0.1rem; }
+.dateTime    { font-size: 0.72rem; color: #555; margin-top: 0.4rem; }
+
+.tokenBadge {
+  display: inline-block;
+  background: #1e293b;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.stampPaid {
+  display: inline-block;
+  margin-top: 0.45rem;
+  border: 2px solid #16a34a;
+  border-radius: 4px;
+  color: #16a34a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.5rem;
+}
+.stampUnpaid {
+  display: inline-block;
+  margin-top: 0.45rem;
+  border: 2px solid #dc2626;
+  border-radius: 4px;
+  color: #dc2626;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.5rem;
+}
+
+.dashed   { border: none; border-top: 1px dashed #aaa; margin: 0.65rem 0; }
+.thinLine { border: none; border-top: 1px solid #ddd; margin: 0.4rem 0; }
+
+/* Service detail rows */
+.serviceSection { display: flex; flex-direction: column; gap: 0.25rem; }
+.serviceRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+}
+.serviceLabel { color: #555; }
+
+/* Totals + discount/tax editor */
+.totalsSection { display: flex; flex-direction: column; gap: 0.35rem; }
+.totalRow      { display: flex; justify-content: space-between; font-size: 0.82rem; }
+.grandTotal    { font-size: 1rem; font-weight: 700; letter-spacing: 0.03em; margin-top: 0.1rem; }
+.advanceRow    { color: #0ea5e9; }
+.remainingRow  { font-weight: 700; border-top: 1px solid #ddd; padding-top: 0.3rem; margin-top: 0.1rem; }
+
+/* Discount/Tax editing rows */
+.adjustRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  padding: 0.35rem 0.5rem;
+}
+.adjustLabel { color: #555; flex-shrink: 0; min-width: 60px; font-size: 0.78rem; }
+
+.adjustInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.typeToggle {
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  color: #475569;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.2rem 0.35rem;
+  transition: background 0.12s;
+}
+.typeActive { background: #0ea5e9; border-color: #0ea5e9; color: #fff; }
+
+.adjustInput {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  color: #111;
+  font-size: 0.82rem;
+  outline: none;
+  padding: 0.2rem 0.4rem;
+  width: 64px;
+  transition: border-color 0.15s;
+}
+.adjustInput:focus { border-color: #0ea5e9; }
+
+.discountAmt { color: #16a34a; font-size: 0.78rem; margin-left: auto; }
+.taxAmt      { color: #b45309; font-size: 0.78rem; margin-left: auto; }
+
+.footer { text-align: center; color: #555; font-size: 0.72rem; margin-top: 0.25rem; }
+.footer p { margin: 0.1rem 0; }
+
+.payPickerSection {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+.confirmPayBtn {
+  background: #16a34a;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  width: 100%;
+  transition: background 0.15s;
+}
+.confirmPayBtn:hover:not(:disabled) { background: #22c55e; }
+.confirmPayBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+.cancelBtn {
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  transition: all 0.12s;
+}
+.cancelBtn:hover { border-color: #64748b; color: #f1f5f9; }
+.paymentRow { color: #94a3b8 !important; font-size: 0.82rem !important; }
+.paymentRow span:last-child { color: #38bdf8 !important; font-weight: 600 !important; }
+
+.servedBy {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  margin-top: 2px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.editBillBtn {
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  color: #cbd5e1;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.editBillBtn:hover { background: #334155; color: #f1f5f9; }
+
+.cancelEditBtn {
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 0.82rem;
+  padding: 0.6rem 0.8rem;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.cancelEditBtn:hover { background: #1e293b; color: #94a3b8; }
+
+.frozenValue {
+  color: #64748b;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+.activeWarning {
+  background: #431407;
+  border: 1px solid #ea580c;
+  border-radius: 7px;
+  color: #fed7aa;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  flex: 1;
+}
