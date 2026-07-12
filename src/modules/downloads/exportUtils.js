@@ -98,7 +98,7 @@ export async function downloadSwimmingTokens(fromDate = null, toDate = null) {
   const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 
   const headers = [
-    "Token #", "Date", "People", "Hours", "Rate (BDT/hr)",
+    "Token #", "Date", "Customer Name", "Phone", "People", "Hours", "Rate (BDT/hr)",
     "Subtotal (BDT)", "Discount (BDT)", "VAT (BDT)", "Total (BDT)",
     "Payment", "Payment Method", "Issued At",
   ];
@@ -106,6 +106,8 @@ export async function downloadSwimmingTokens(fromDate = null, toDate = null) {
   const rows = docs.map((t) => [
     t.tokenNumber != null ? "#" + String(t.tokenNumber).padStart(3, "0") : "",
     t.date ?? "",
+    t.customerName || "—",
+    t.phone ?? "",
     t.people ?? "",
     t.hours ?? "",
     t.pricePerPersonPerHour ?? "",

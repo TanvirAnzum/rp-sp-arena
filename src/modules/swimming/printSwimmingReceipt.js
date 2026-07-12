@@ -106,6 +106,8 @@ export function printSwimmingReceipt({
       <th style="text-align:right;padding:2px 4px;">Amount</th>
     </tr>
     <tr><td colspan="3"><div class="thin"></div></td></tr>
+    ${token.customerName ? `<tr><td style="padding:2px 4px;color:#555;font-size:10px;" colspan="3">Customer: ${token.customerName}</td></tr>` : ""}
+    ${token.phone ? `<tr><td style="padding:2px 4px;color:#555;font-size:10px;" colspan="3">Phone: ${token.phone}</td></tr>` : ""}
     <tr>
       <td style="padding:2px 4px;">Swimming (${token.people} pax x ${token.hours} hr)</td>
       <td style="padding:2px 4px;text-align:center;">1</td>

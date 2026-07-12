@@ -52,6 +52,7 @@ export default function IssueTokenForm({ onIssued }) {
   const { settings, loading: settingsLoading } = useSwimmingSettings();
 
   const [people,    setPeople]    = useState("");
+  const [customerName, setCustomerName] = useState("");
   const [phone,     setPhone]     = useState("");
   const [startTime, setStartTime] = useState(nowHHMM);
   const [endTime,   setEndTime]   = useState(() => addHoursToHHMM(nowHHMM(), 1));
@@ -80,6 +81,8 @@ export default function IssueTokenForm({ onIssued }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!customerName.trim())
+      return setError("Customer name is required.");
     if (!isValidBDPhone(phone))
       return setError("Enter a valid Bangladesh phone number (e.g. 01712345678).");
     if (!rate)
@@ -90,7 +93,7 @@ export default function IssueTokenForm({ onIssued }) {
     setError("");
     setConfirmDlg({
       title:   "Issue Swimming Token",
-      message: `Issue token for ${people} person${numPeople > 1 ? "s" : ""} from ${startTime} to ${endTime}?${previewTotal != null ? " Total: ৳" + previewTotal.toLocaleString() + "." : ""}`,
+      message: `Issue token for ${customerName.trim()} — ${people} person${numPeople > 1 ? "s" : ""} from ${startTime} to ${endTime}?${previewTotal != null ? " Total: ৳" + previewTotal.toLocaleString() + "." : ""}`,
     });
   }
 
@@ -104,6 +107,7 @@ export default function IssueTokenForm({ onIssued }) {
       const exitTs      = timeStrToTimestamp(dateStr, endTime, entryTs.toDate());
       const tokenNumber = await getNextToken(db, dateStr, "swimming");
       const docRef = await addDoc(collection(db, "swimmingTokens"), {
+        customerName:         customerName.trim(),
         people:               numPeople,
         phone:                phone.trim(),
         pricePerPersonPerHour: rate,
@@ -119,13 +123,14 @@ export default function IssueTokenForm({ onIssued }) {
         createdBy:  user.uid,
       });
       const issued = {
-        id: docRef.id, people: numPeople, phone: phone.trim(),
+        id: docRef.id, customerName: customerName.trim(), people: numPeople, phone: phone.trim(),
         pricePerPersonPerHour: rate, tokenNumber, date: dateStr,
         entryTime: entryTs, exitTime: exitTs, hours,
         totalPrice: previewTotal ?? 0, paid: false, prebooked: true,
       };
       // Reset
       setPeople("");
+      setCustomerName("");
       setPhone("");
       const nw = nowHHMM();
       setStartTime(nw);
@@ -151,6 +156,18 @@ export default function IssueTokenForm({ onIssued }) {
       )}
 
       <form onSubmit={handleSubmit} className={styles.form}>
+        {/* Customer Name */}
+        <div className={styles.field}>
+          <label>Customer Name</label>
+          <input
+            type="text"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            placeholder="e.g. Rahim Uddin"
+            required
+          />
+        </div>
+
         {/* People + Phone */}
         <div className={styles.fields}>
           <div className={styles.field}>

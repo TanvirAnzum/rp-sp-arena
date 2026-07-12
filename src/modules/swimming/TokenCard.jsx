@@ -305,7 +305,11 @@ export default function TokenCard({ token, onBill }) {
         </div>
       )}
 
-      {/* ── Phone ── */}
+      {/* ── Customer name + Phone ── */}
+      <div className={styles.phoneRow}>
+        <span className={styles.phoneLabel}>👤</span>
+        <span className={styles.phoneVal}>{token.customerName || "—"}</span>
+      </div>
       {token.phone && (
         <div className={styles.phoneRow}>
           <span className={styles.phoneLabel}>📞</span>

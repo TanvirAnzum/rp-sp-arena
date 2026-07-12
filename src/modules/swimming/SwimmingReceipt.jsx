@@ -212,6 +212,10 @@ export default function SwimmingReceipt({ token, onClose }) {
 
         <div className={styles.serviceSection}>
           <div className={styles.serviceRow}>
+            <span className={styles.serviceLabel}>Customer</span>
+            <span>{token.customerName || "—"}</span>
+          </div>
+          <div className={styles.serviceRow}>
             <span className={styles.serviceLabel}>People</span>
             <span>{token.people}</span>
           </div>

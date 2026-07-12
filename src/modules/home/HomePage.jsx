@@ -133,6 +133,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div className={styles.sessionDetails}>
+                  <span>👤 {token.customerName || "—"}</span>
                   <span>👥 {token.people} person{token.people !== 1 ? "s" : ""}</span>
                   <span>In: {formatTime(token.entryTime)}</span>
                   {token.exitTime && (
