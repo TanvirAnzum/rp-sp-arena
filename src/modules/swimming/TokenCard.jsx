@@ -105,10 +105,12 @@ export default function TokenCard({ token, onBill }) {
   // ── Void token (owner only) ───────────────────────────────────────────────
   function handleVoid() {
     setConfirmDlg({
-      title:   "Void Token?",
-      message: "This will permanently delete this token. Use only for tokens issued by mistake.",
+      title:   "Delete Token?",
+      message: token.paid
+        ? "This is a paid record. Deleting it will permanently remove it from history."
+        : "This will permanently delete this token. Use only for tokens issued by mistake.",
       variant:      "danger",
-      confirmLabel: "Void Token",
+      confirmLabel: "Delete",
       onConfirm: async () => {
         await deleteDoc(doc(db, "swimmingTokens", token.id));
       },
@@ -213,11 +215,6 @@ export default function TokenCard({ token, onBill }) {
           {token.tokenNumber != null
             ? `#${String(token.tokenNumber).padStart(3, "0")}`
             : shortTokenId(token.id)}
-          {(isActive || isNotStarted) && (
-            <span className={`${styles.liveBadge} ${isNotStarted ? styles.badgeUpcoming : styles.badgeActive}`}>
-              ● {isNotStarted ? "UPCOMING" : "ACTIVE"}
-            </span>
-          )}
         </div>
         <div className={styles.topRight}>
           {showBillBtn && (
@@ -234,9 +231,9 @@ export default function TokenCard({ token, onBill }) {
           {!isPrebooked && isActive && showEnd && (
             <button className={styles.cancelBtn} onClick={() => setShowEnd(false)}>✕ Cancel</button>
           )}
-          {isOwner && !token.paid && (
-            <button className={styles.voidBtn} onClick={handleVoid} title="Void this token (owner only)">
-              ✕ Void
+          {isOwner && (
+            <button className={styles.voidBtn} onClick={handleVoid} title="Delete this token (owner only)">
+              ✕ Del
             </button>
           )}
           <button
@@ -257,6 +254,13 @@ export default function TokenCard({ token, onBill }) {
           </button>
         </div>
       </div>
+
+      {/* ── Status badge ── */}
+      {(isActive || isNotStarted) && (
+        <span className={`${styles.liveBadge} ${isNotStarted ? styles.badgeUpcoming : styles.badgeActive}`}>
+          ● {isNotStarted ? "UPCOMING" : "ACTIVE"}
+        </span>
+      )}
 
       {/* ── Prebooked: countdown remaining ── */}
       {isPrebooked && isActive && (
